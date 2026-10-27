@@ -1,5 +1,6 @@
 const portrait = document.querySelector<HTMLDivElement>("#portrait")!;
 const spin = document.querySelector<HTMLButtonElement>("#spin")!;
+document.querySelectorAll("#portrait svg circle").length;
 
 // The prototype grew inline. Keep it this way until the refactoring checkpoint.
 const face = document.createElementNS("http://www.w3.org/2000/svg", "svg");
@@ -7,57 +8,65 @@ face.setAttribute("viewBox", "0 0 200 200");
 face.setAttribute("role", "img");
 face.setAttribute("aria-label", "A neutral face");
 
-const head = document.createElementNS("http://www.w3.org/2000/svg", "ellipse");
-head.setAttribute("cx", "100");
-head.setAttribute("cy", "100");
-head.setAttribute("rx", "78");
-head.setAttribute("ry", "86");
-head.setAttribute("fill", "#f3cf87");
-head.setAttribute("stroke", "#302c29");
-head.setAttribute("stroke-width", "4");
-face.append(head);
+for (let i = 0; i < 75; i++) {
+  const angle = (i / 75) * Math.PI * 2;
+  const dot = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+  dot.setAttribute("cx", String(100 + 86 * Math.cos(angle)));
+  dot.setAttribute("cy", String(100 + 86 * Math.sin(angle)));
+  dot.setAttribute("r", "3");
+  dot.setAttribute("fill", "#c1a00c");
+  face.append(dot);
+}
 
-const leftEye = document.createElementNS(
-  "http://www.w3.org/2000/svg",
-  "ellipse",
-);
-leftEye.setAttribute("cx", "72");
-leftEye.setAttribute("cy", "82");
-leftEye.setAttribute("rx", "6");
-leftEye.setAttribute("ry", "9");
-leftEye.setAttribute("fill", "#302c29");
-face.append(leftEye);
+for (let i = 0; i < 8; i++) {
+  const freckle = document.createElementNS(
+    "http://www.w3.org/2000/svg",
+    "circle",
+  );
+  const floorDiv = Math.floor(i / 2);
+  freckle.setAttribute("cx", String(40 + 10 * floorDiv));
+  freckle.setAttribute("cy", String(110 + 10 * (i % 2)));
+  freckle.setAttribute("r", "3");
+  freckle.setAttribute("fill", "#c10c48");
+  face.append(freckle);
+}
+for (let i = 0; i < 8; i++) {
+  const freckle = document.createElementNS(
+    "http://www.w3.org/2000/svg",
+    "circle",
+  );
+  const floorDiv = Math.floor(i / 2);
+  freckle.setAttribute("cx", String(130 + 10 * floorDiv));
+  freckle.setAttribute("cy", String(110 + 10 * (i % 2)));
+  freckle.setAttribute("r", "3");
+  freckle.setAttribute("fill", "#c10c48");
+  face.append(freckle);
+}
 
-const rightEye = document.createElementNS(
-  "http://www.w3.org/2000/svg",
-  "ellipse",
-);
-rightEye.setAttribute("cx", "128");
-rightEye.setAttribute("cy", "82");
-rightEye.setAttribute("rx", "6");
-rightEye.setAttribute("ry", "9");
-rightEye.setAttribute("fill", "#302c29");
-face.append(rightEye);
+for (let i = 0; i < 2; i++) {
+  const eye = document.createElementNS(
+    "http://www.w3.org/2000/svg",
+    "circle",
+  );
+  const eyePosition = 60 + 75 * i;
+  eye.setAttribute("cx", String(eyePosition));
+  eye.setAttribute("cy", "75");
+  eye.setAttribute("r", "10");
+  eye.setAttribute("fill", "#000000");
+  face.append(eye);
+}
 
-const nose = document.createElementNS("http://www.w3.org/2000/svg", "line");
-nose.setAttribute("x1", "100");
-nose.setAttribute("y1", "96");
-nose.setAttribute("x2", "96");
-nose.setAttribute("y2", "112");
-nose.setAttribute("stroke", "#302c29");
-nose.setAttribute("stroke-width", "4");
-nose.setAttribute("stroke-linecap", "round");
-face.append(nose);
-
-const mouth = document.createElementNS("http://www.w3.org/2000/svg", "line");
-mouth.setAttribute("x1", "75");
-mouth.setAttribute("y1", "137");
-mouth.setAttribute("x2", "125");
-mouth.setAttribute("y2", "137");
-mouth.setAttribute("stroke", "#302c29");
-mouth.setAttribute("stroke-width", "4");
-mouth.setAttribute("stroke-linecap", "round");
-face.append(mouth);
+for (let i = 0; i < 13; i++) {
+  const mouth = document.createElementNS(
+    "http://www.w3.org/2000/svg",
+    "circle",
+  );
+  mouth.setAttribute("cx", String(70 + 5 * i));
+  mouth.setAttribute("cy", "150");
+  mouth.setAttribute("r", "2");
+  mouth.setAttribute("fill", "#000000");
+  face.append(mouth);
+}
 
 portrait.append(face);
 
