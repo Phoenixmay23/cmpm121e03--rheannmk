@@ -1,3 +1,10 @@
+// @deno-types="./asset-url.d.ts"
+import leethanURL from "./leethan pfp circle.png?no-inline";
+//drawn by Rheann Kunita (me), using Krita
+
+import phoenixURL from "./PhoenixGreenCircle.png?no-inline";
+//drawn by Rheann Kunita (me), using Krita
+
 const portrait = document.querySelector<HTMLDivElement>("#portrait")!;
 const spin = document.querySelector<HTMLButtonElement>("#spin")!;
 
@@ -58,6 +65,28 @@ mouth.setAttribute("stroke", "#302c29");
 mouth.setAttribute("stroke-width", "4");
 mouth.setAttribute("stroke-linecap", "round");
 face.append(mouth);
+
+const phoenixImage = document.createElementNS(
+  "http://www.w3.org/2000/svg",
+  "image",
+);
+phoenixImage.setAttribute("href", phoenixURL);
+phoenixImage.setAttribute("x", "25");
+phoenixImage.setAttribute("y", "25");
+phoenixImage.setAttribute("width", "50");
+phoenixImage.setAttribute("height", "50");
+face.append(phoenixImage);
+
+const leethanImage = document.createElementNS(
+  "http://www.w3.org/2000/svg",
+  "image",
+);
+leethanImage.setAttribute("href", leethanURL);
+leethanImage.setAttribute("x", "125");
+leethanImage.setAttribute("y", "125");
+leethanImage.setAttribute("width", "50");
+leethanImage.setAttribute("height", "50");
+face.append(leethanImage);
 
 portrait.append(face);
 
