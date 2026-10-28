@@ -59,6 +59,40 @@ mouth.setAttribute("stroke-width", "4");
 mouth.setAttribute("stroke-linecap", "round");
 face.append(mouth);
 
+const defs = document.createElementNS("http://www.w3.org/2000/svg", "defs");
+face.append(defs);
+
+const gradCircle = document.createElementNS(
+  "http://www.w3.org/2000/svg",
+  "circle",
+);
+gradCircle.setAttribute("r", "100");
+gradCircle.setAttribute("cx", "100");
+gradCircle.setAttribute("cy", "100");
+gradCircle.setAttribute("fill", "url(#Gradient1)");
+face.append(gradCircle);
+
+const gradient = document.createElementNS(
+  "http://www.w3.org/2000/svg",
+  "linearGradient",
+);
+gradient.setAttribute("id", "Gradient1");
+gradient.setAttribute("x1", "0");
+gradient.setAttribute("x2", "100%");
+gradient.setAttribute("y1", "0");
+gradient.setAttribute("y2", "100%");
+defs.append(gradient);
+
+const stop1 = document.createElementNS("http://www.w3.org/2000/svg", "stop");
+stop1.setAttribute("stop-color", "#b83d62");
+stop1.setAttribute("offset", "25%");
+gradient.append(stop1);
+
+const stop2 = document.createElementNS("http://www.w3.org/2000/svg", "stop");
+stop2.setAttribute("stop-color", "#e64818");
+stop2.setAttribute("offset", "75%");
+gradient.append(stop2);
+
 portrait.append(face);
 
 spin.addEventListener("click", () => {
